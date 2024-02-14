@@ -27,7 +27,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: distributes the starting tiles to the players
+     * TODO: distributes the starting tiles to the players @CxTurkO
      * player at index 0 gets 15 tiles and starts first
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
@@ -36,7 +36,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: get the last discarded tile for the current player
+     * TODO: get the last discarded tile for the current player @Berkantmahir
      * (this simulates picking up the tile discarded by the previous player)
      * it should return the toString method of the tile so that we can print what we picked
      */
@@ -45,7 +45,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: get the top tile from tiles array for the current player
+     * TODO: get the top tile from tiles array for the current player @SelimArslan1
      * that tile is no longer in the tiles array (this simulates picking up the top tile)
      * and it will be given to the current player
      * returns the toString method of the tile so that we can print what we picked
@@ -55,21 +55,21 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: should randomly shuffle the tiles array before game starts
+     * TODO: should randomly shuffle the tiles array before game starts @CxTurkO
      */
     public void shuffleTiles() {
 
     }
 
     /*
-     * TODO: check if game still continues, should return true if current player
+     * TODO: check if game still continues, should return true if current player @Berkantmahir
      * finished the game. use checkWinning method of the player class to determine
      */
     public boolean didGameFinish() {
         return false;
     }
 
-    /* TODO: finds the player who has the highest number for the longest chain
+    /* TODO: finds the player who has the highest number for the longest chain @rifatarifogluIK
      * if multiple players have the same length may return multiple players
      */
     public Player[] getPlayerWithHighestLongestChain() {
@@ -86,7 +86,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: pick a tile for the current computer player using one of the following:
+     * TODO: pick a tile for the current computer player using one of the following: @rifatarifogluIK - @SelimArslan1
      * - picking from the tiles array using getTopTile()
      * - picking from the lastDiscardedTile using getLastDiscardedTile()
      * you should check if getting the discarded tile is useful for the computer
@@ -97,7 +97,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: Current computer player will discard the least useful tile.
+     * TODO: Current computer player will discard the least useful tile. @SelimArslan1 - @rifatarifogluIK
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
@@ -105,7 +105,7 @@ public class SimplifiedOkeyGame {
     }
 
     /*
-     * TODO: discards the current player's tile at given index
+     * TODO: discards the current player's tile at given index @Berkantmahir
      * this should set lastDiscardedTile variable and remove that tile from
      * that player's tiles
      */

@@ -10,7 +10,7 @@ public class Player {
     }
 
     /*
-     * TODO: checks this player's hand to determine if this player is winning
+     * TODO: checks this player's hand to determine if this player is winning @Berkantmahir
      * the player with a complete chain of 14 consecutive numbers wins the game
      * note that the player whose turn is now draws one extra tile to have 15 tiles in hand,
      * and the extra tile does not disturb the longest chain and therefore the winning condition
@@ -21,7 +21,7 @@ public class Player {
     }
 
     /*
-     * TODO: used for finding the longest chain in this player hand
+     * TODO: used for finding the longest chain in this player hand @SelimArslan1
      * this method should iterate over playerTiles to find the longest chain
      * of consecutive numbers, used for checking the winning condition
      * and also for determining the winner if tile stack has no tiles
@@ -33,14 +33,14 @@ public class Player {
     }
 
     /*
-     * TODO: removes and returns the tile in given index position
+     * TODO: removes and returns the tile in given index position @Berkantmahir
      */
     public Tile getAndRemoveTile(int index) {
         return null;
     }
 
     /*
-     * TODO: adds the given tile to this player's hand keeping the ascending order
+     * TODO: adds the given tile to this player's hand keeping the ascending order @rifatarifogluIK
      * this requires you to loop over the existing tiles to find the correct position,
      * then shift the remaining tiles to the right by one
      */
