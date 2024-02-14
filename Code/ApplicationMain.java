@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ApplicationMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException{
         Scanner sc = new Scanner(System.in);
         SimplifiedOkeyGame game = new SimplifiedOkeyGame();
 

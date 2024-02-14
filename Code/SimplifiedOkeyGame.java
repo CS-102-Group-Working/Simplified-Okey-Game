@@ -115,8 +115,22 @@ public class SimplifiedOkeyGame {
      * you should check if getting the discarded tile is useful for the computer
      * by checking if it increases the longest chain length, if not get the top tile
      */
-    public void pickTileForComputer() {
+    public void pickTileForComputer() throws CloneNotSupportedException{
+        Player currentPlayer = players[currentPlayerIndex];
+        Player imaginePlayer = (Player)currentPlayer.clone();
+        Tile temp = new Tile(lastDiscardedTile.getValue());
+        String pickedTile = "";
 
+        imaginePlayer.addTile(temp);
+        int imagineChainLength = imaginePlayer.findLongestChain();
+
+        if(imagineChainLength > currentPlayer.findLongestChain()){
+            pickedTile = getLastDiscardedTile();
+        }else{
+            pickedTile = getTopTile();
+        }
+
+        System.out.println(currentPlayer.getName() + " picked " + pickedTile);
     }
 
     /*
