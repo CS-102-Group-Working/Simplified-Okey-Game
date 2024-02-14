@@ -1,4 +1,4 @@
-public class Player {
+public class Player implements Cloneable{
     String playerName;
     Tile[] playerTiles;
     int numberOfTiles;
@@ -83,6 +83,11 @@ public class Player {
             System.out.print(playerTiles[i].toString() + " ");
         }
         System.out.println();
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public Tile[] getTiles() {
