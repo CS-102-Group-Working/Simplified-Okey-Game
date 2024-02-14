@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class SimplifiedOkeyGame {
 
     Player[] players;
@@ -73,9 +75,30 @@ public class SimplifiedOkeyGame {
      * if multiple players have the same length may return multiple players
      */
     public Player[] getPlayerWithHighestLongestChain() {
-        Player[] winners = new Player[1];
+        boolean[] winner = new boolean[players.length];
+        int biggest = Integer.MIN_VALUE;
+        int count = 0;
 
-        return winners;
+        for(int i = 0; i < players.length; i++){
+            if(biggest < players[i].findLongestChain()){
+                Arrays.fill(winner, false);
+                winner[i] = true;
+                count = 1;
+            }else if(biggest == players[i].findLongestChain()){
+                winner[i] = true;
+                count++;
+            }
+        }
+
+        Player[] winnerPlayers = new Player[count];
+
+        for(int i = 0, j = 0; i < players.length; i++){
+            if(winner[i]){
+                winnerPlayers[j++] = players[i];
+            }
+        }
+
+        return winnerPlayers;
     }
     
     /*
