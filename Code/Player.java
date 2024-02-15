@@ -17,7 +17,7 @@ public class Player implements Cloneable{
      * check the assigment text for more details on winning condition
      */
     public boolean checkWinning() {
-        return false;
+        return findLongestChain() >= 14;
     }
 
     /*
@@ -28,7 +28,6 @@ public class Player implements Cloneable{
      */
     public int findLongestChain() {
         int longestChain = 0;
-
         return longestChain;
     }
 
@@ -36,7 +35,15 @@ public class Player implements Cloneable{
      * TODO: removes and returns the tile in given index position @Berkantmahir
      */
     public Tile getAndRemoveTile(int index) {
-        return null;
+        Tile toBeRemoved = getTiles()[index];
+        playerTiles[index] = null;
+        
+        for(int i = index; i < numberOfTiles; i++ )
+        {
+            playerTiles[i] = playerTiles[ i + 1 ];
+        }
+
+        return toBeRemoved;
     }
 
     /*

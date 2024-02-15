@@ -43,7 +43,11 @@ public class SimplifiedOkeyGame {
      * it should return the toString method of the tile so that we can print what we picked
      */
     public String getLastDiscardedTile() {
-        return null;
+        if(currentPlayerIndex == 0) 
+        {
+            return players[players.length - 1].toString();
+        }
+        return  players[currentPlayerIndex].toString();
     }
 
     /*
@@ -68,6 +72,13 @@ public class SimplifiedOkeyGame {
      * finished the game. use checkWinning method of the player class to determine
      */
     public boolean didGameFinish() {
+        for(Player p: players)
+        {
+            if(p.checkWinning() == true)
+            {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -147,6 +158,13 @@ public class SimplifiedOkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
+        lastDiscardedTile = players[currentPlayerIndex].playerTiles[tileIndex];
+        players[currentPlayerIndex].playerTiles[tileIndex] = null;
+        
+        for(int i = tileIndex; i < players[currentPlayerIndex].playerTiles.length + 1; i++)
+        {
+            players[currentPlayerIndex].playerTiles[i] = players[currentPlayerIndex].playerTiles[i + 1];
+        }
 
     }
 
