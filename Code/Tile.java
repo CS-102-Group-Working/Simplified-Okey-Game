@@ -18,7 +18,7 @@ public class Tile {
     }
 
     /*
-     * TODO: should compare the order of these two tiles @SelimArslan1
+     * TODO: should compare the order of these two tiles @MELIKEFEYZABAHADIRLI
      * return 1 if given tile has smaller in value
      * return 0 if they have the same value
      * return -1 if the given tile has higher value
