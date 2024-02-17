@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class SimplifiedOkeyGame {
 
@@ -34,7 +35,17 @@ public class SimplifiedOkeyGame {
      * other players get 14 tiles, this method assumes the tiles are already shuffled
      */
     public void distributeTilesToPlayers() {
+        // Starting player gets 15 tiles
+        for (int i = 0; i < 15; i++) {
+            players[0].addTile(tiles[tileCount--]);
+        }
 
+        // Other players get 14 tiles each
+        for (int i = 1; i < players.length; i++) {
+            for (int j = 0; j < 14; j++) {
+                players[i].addTile(tiles[tileCount--]);
+            }
+        }
     }
 
     /*
@@ -62,9 +73,21 @@ public class SimplifiedOkeyGame {
 
     /*
      * TODO: should randomly shuffle the tiles array before game starts @CxTurkO
+     * Fisher-Yates method for shuffle
      */
     public void shuffleTiles() {
+        // use a random number generator
+        Random random = new Random();
 
+        // loop through the tiles array
+        for (int i = 0; i < tileCount; i++) {
+            // pick a random index between i and tileCount - 1
+            int j = i + random.nextInt(tileCount - i);
+            // swap the tiles at i and j
+            Tile temp = tiles[i];
+            tiles[i] = tiles[j];
+            tiles[j] = temp;
+        }
     }
 
     /*
