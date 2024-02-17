@@ -32,7 +32,7 @@ public class Player implements Cloneable{
     }
 
     /*
-     * TODO: removes and returns the tile in given index position @MELIKEFEYZABAHADIRLI
+     * TODO: removes and returns the tile in given index position @Berkantmahir
      */
     public Tile getAndRemoveTile(int index) {
         Tile toBeRemoved = getTiles()[index];
