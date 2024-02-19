@@ -116,7 +116,7 @@ public class Player implements Cloneable {
      */
     public void displayTiles() {
         System.out.println(playerName + "'s Tiles:");
-        for (int i = 0; i < numberOfTiles; i++) {
+        for (int i = 0; i < 14; i++) {
             System.out.print(playerTiles[i].toString() + " ");
         }
         System.out.println();

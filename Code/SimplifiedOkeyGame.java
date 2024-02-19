@@ -38,13 +38,13 @@ public class SimplifiedOkeyGame {
     public void distributeTilesToPlayers() {
         // Starting player gets 15 tiles
         for (int i = 0; i < 15; i++) {
-            players[0].addTile(tiles[tileCount--]);
+            players[0].addTile(tiles[--tileCount]);
         }
 
         // Other players get 14 tiles each
         for (int i = 1; i < players.length; i++) {
             for (int j = 0; j < 14; j++) {
-                players[i].addTile(tiles[tileCount--]);
+                players[i].addTile(tiles[--tileCount]);
             }
         }
     }
@@ -212,8 +212,8 @@ public class SimplifiedOkeyGame {
             }
             currentCounter = 0;
         }
-        
-        players[currentPlayerIndex].getAndRemoveTile(index);
+
+        discardTile(index);
     }
 
     /*
@@ -225,7 +225,7 @@ public class SimplifiedOkeyGame {
         lastDiscardedTile = players[currentPlayerIndex].playerTiles[tileIndex];
         players[currentPlayerIndex].playerTiles[tileIndex] = null;
 
-        for (int i = tileIndex; i < players[currentPlayerIndex].playerTiles.length + 1; i++) {
+        for (int i = tileIndex; i < players[currentPlayerIndex].playerTiles.length - 1; i++) {
             players[currentPlayerIndex].playerTiles[i] = players[currentPlayerIndex].playerTiles[i + 1];
         }
 
@@ -255,7 +255,13 @@ public class SimplifiedOkeyGame {
 
     public void setPlayerName(int index, String name) {
         if (index >= 0 && index <= 3) {
+
             players[index] = new Player(name);
+
+            for (int i = 0; i < 15; i++) {
+                players[index].getTiles()[i] = ApplicationMain.NULL_TILE;
+            }
+
         }
     }
 
