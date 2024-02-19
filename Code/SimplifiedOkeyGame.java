@@ -39,6 +39,7 @@ public class SimplifiedOkeyGame {
         // Starting player gets 15 tiles
         for (int i = 0; i < 15; i++) {
             players[0].addTile(tiles[--tileCount]);
+
         }
 
         // Other players get 14 tiles each
@@ -46,6 +47,10 @@ public class SimplifiedOkeyGame {
             for (int j = 0; j < 14; j++) {
                 players[i].addTile(tiles[--tileCount]);
             }
+        }
+
+        for(int i = 1; i < 4; i++){
+            players[i].getTiles()[14] = ApplicationMain.NULL_TILE;
         }
     }
 
@@ -56,10 +61,8 @@ public class SimplifiedOkeyGame {
      * picked
      */
     public String getLastDiscardedTile() {
-        if (currentPlayerIndex == 0) {
-            return players[players.length - 1].toString();
-        }
-        return players[currentPlayerIndex].toString();
+        players[currentPlayerIndex].addTile(lastDiscardedTile);
+        return lastDiscardedTile.toString();
     }
 
     /*
@@ -71,8 +74,8 @@ public class SimplifiedOkeyGame {
      */
     public String getTopTile() {
 
-        Tile currentTile = tiles[tileCount];
-        tiles[tileCount] = null;
+        Tile currentTile = tiles[tileCount - 1];
+        tiles[tileCount - 1] = null;
         tileCount--;
         players[currentPlayerIndex].addTile(currentTile);
         return currentTile.toString();
@@ -182,38 +185,50 @@ public class SimplifiedOkeyGame {
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
+        boolean isDone = false;
 
-        int[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-                26 };
-        boolean[] contains = new boolean[26];
-        for (int i = 0; i < 26; i++) {
-            contains[i] = false;
-        }
-
-        for (int i = 0; i < values.length - 14; i++) {
-            for (int j = i; j < i + 14; j++) {
-                if (players[currentPlayerIndex].findPositionOfTile(values[j]) != -1) {
-                    contains[j] = true;
+        for (int i = 0; i < 15 && !isDone; i++) {
+            for (int j = i + 1; j < 15 && !isDone; j++) {
+                if (players[currentPlayerIndex].getTiles()[i]
+                        .compareTo(players[currentPlayerIndex].getTiles()[j]) == 0) {
+                    discardTile(i);
+                    isDone = true;
                 }
             }
         }
-        int currentCounter = 0;
-        int counter = 0;
-        int index = 0;
-        for (int i = 0; i < contains.length - 14; i++) {
-            for (int j = i; j < i + 14; j++) {
-                if (contains[j] == true) {
-                    currentCounter++;
+
+        if (!isDone) {
+            int[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+                    26 };
+            boolean[] contains = new boolean[26];
+            Arrays.fill(contains, false);
+
+            for (int i = 0; i < values.length - 13; i++) {
+                for (int j = i; j < i + 14; j++) {
+                    if (players[currentPlayerIndex].findPositionOfTile(values[j]) != -1) {
+                        contains[j] = true;
+                    }
                 }
             }
-            if (currentCounter > counter) {
-                counter = currentCounter;
-                index = i;
+
+            int counter = 0;
+            int index = 0;
+            for (int i = 0; i < contains.length - 13; i++) {
+                int currentCounter = 0;
+                for (int j = i; j < i + 14; j++) {
+                    if (!contains[j]) {
+                        currentCounter++;
+                    }
+                }
+                if (currentCounter > counter) {
+                    counter = currentCounter;
+                    index = i;
+                }
             }
-            currentCounter = 0;
+
+            discardTile(index);
         }
 
-        discardTile(index);
     }
 
     /*
@@ -222,13 +237,15 @@ public class SimplifiedOkeyGame {
      * that player's tiles
      */
     public void discardTile(int tileIndex) {
-        lastDiscardedTile = players[currentPlayerIndex].playerTiles[tileIndex];
-        players[currentPlayerIndex].playerTiles[tileIndex] = null;
+        lastDiscardedTile = players[currentPlayerIndex].getTiles()[tileIndex];
+
+        System.out.println(players[currentPlayerIndex].getName() + " discarded " + lastDiscardedTile.getValue());
 
         for (int i = tileIndex; i < players[currentPlayerIndex].playerTiles.length - 1; i++) {
             players[currentPlayerIndex].playerTiles[i] = players[currentPlayerIndex].playerTiles[i + 1];
         }
 
+        players[currentPlayerIndex].playerTiles[14] = ApplicationMain.NULL_TILE;
     }
 
     public void displayDiscardInformation() {
