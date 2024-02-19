@@ -24,9 +24,16 @@ public class Tile {
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
-       return 0;
+        value = t.getValue();
+        if(this.value < value) {
+            return -1;
+        }
+        else if(this.value > value) {
+            return 1;
+        }
+        return 0;
     }
-
+    
     /*
      * TODO: should determine if this tile and given tile can form a chain together @CxTurkO
      * this method should check the difference in values of the two tiles
