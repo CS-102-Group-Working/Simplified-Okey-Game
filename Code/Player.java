@@ -70,18 +70,18 @@ public class Player implements Cloneable {
      * then shift the remaining tiles to the right by one
      */
     public void addTile(Tile t) {
-        boolean isPut = false;
+        boolean isPutted = false;
 
-        for (int i = playerTiles.length - 1; i > 0 && !isPut; i--) {
+        for (int i = playerTiles.length - 1; i > 0 && !isPutted; i--) {
             if (playerTiles[i - 1].compareTo(t) > 0) {
                 playerTiles[i] = playerTiles[i - 1];
             } else {
                 playerTiles[i] = t;
-                isPut = true;
+                isPutted = true;
             }
         }
 
-        if (!isPut) {
+        if (!isPutted) {
             playerTiles[0] = t;
         }
     }
@@ -91,7 +91,7 @@ public class Player implements Cloneable {
      */
     public int findPositionOfTile(Tile t) {
         int tilePosition = -1;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < numberOfTiles; i++) {
             if (playerTiles[i].matchingTiles(t)) {
                 tilePosition = i;
             }
@@ -103,7 +103,7 @@ public class Player implements Cloneable {
      */
     public int findPositionOfTile(int value) {
         int tilePosition = -1;
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < numberOfTiles; i++) {
             if (playerTiles[i].getValue() == value) {
                 tilePosition = i;
             }
@@ -116,10 +116,8 @@ public class Player implements Cloneable {
      */
     public void displayTiles() {
         System.out.println(playerName + "'s Tiles:");
-        for (int i = 0; i < 15; i++) {
-            if(playerTiles[i].getValue() != 31){
-                System.out.print(playerTiles[i].toString() + " ");
-            }
+        for (int i = 0; i < 14; i++) {
+            System.out.print(playerTiles[i].toString() + " ");
         }
         System.out.println();
     }

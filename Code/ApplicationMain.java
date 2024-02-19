@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ApplicationMain {
-    public static final Tile NULL_TILE = new Tile(31);
+    public static final Tile NULL_TILE = new Tile(-1);
     public static void main(String[] args) throws CloneNotSupportedException{
         Scanner sc = new Scanner(System.in);
         SimplifiedOkeyGame game = new SimplifiedOkeyGame();
@@ -28,7 +28,7 @@ public class ApplicationMain {
         int playerChoice = -1;
 
         while(gameContinues) {
-            System.out.println();
+            
             int currentPlayer = game.getCurrentPlayerIndex();
             System.out.println(game.getCurrentPlayerName() + "'s turn.");
             

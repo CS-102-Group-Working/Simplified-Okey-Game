@@ -24,11 +24,11 @@ public class Tile {
      * return -1 if the given tile has higher value
      */
     public int compareTo(Tile t) {
-        int tempValue = t.getValue();
-        if(this.value < tempValue) {
+        value = t.getValue();
+        if(this.value < value) {
             return -1;
         }
-        else if(this.value > tempValue) {
+        else if(this.value > value) {
             return 1;
         }
         return 0;
