@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class SimplifiedOkeyGame {
 
-    Player[] players;
-    Tile[] tiles;
-    int tileCount;
+    private Player[] players;
+    private Tile[] tiles;
+    private int tileCount;
 
     Tile lastDiscardedTile;
 
@@ -241,11 +241,11 @@ public class SimplifiedOkeyGame {
 
         System.out.println(players[currentPlayerIndex].getName() + " discarded " + lastDiscardedTile.getValue());
 
-        for (int i = tileIndex; i < players[currentPlayerIndex].playerTiles.length - 1; i++) {
-            players[currentPlayerIndex].playerTiles[i] = players[currentPlayerIndex].playerTiles[i + 1];
+        for (int i = tileIndex; i < players[currentPlayerIndex].getTiles().length - 1; i++) {
+            players[currentPlayerIndex].getTiles()[i] = players[currentPlayerIndex].getTiles()[i + 1];
         }
 
-        players[currentPlayerIndex].playerTiles[14] = ApplicationMain.NULL_TILE;
+        players[currentPlayerIndex].getTiles()[14] = ApplicationMain.NULL_TILE;
     }
 
     public void displayDiscardInformation() {
