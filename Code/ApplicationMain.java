@@ -145,14 +145,20 @@ public class ApplicationMain {
         sc.close();
     }
 
-    public static int getPlayerChoice(Scanner scanner) {
+
+    /**
+     * A method that prompts the user to make a choice between 0 and 14 and returns the choice
+     * @param The Scanner object to read user input
+     * @return The user's choice that an integer between 0 and 14
+     */
+    public static int getPlayerChoice(Scanner in) {
         int choice = -1;
         System.out.print("Enter your choice (0 to 14): ");
-        while (!scanner.hasNextInt()) {
+        while (!in.hasNextInt()) {
             System.out.print("Please enter a valid integer: ");
-            scanner.next();
+            in.next();
         }
-        switch (scanner.nextInt()) {
+        switch (in.nextInt()) {
             case 0:
                 choice = 0;
                 break;
@@ -200,7 +206,7 @@ public class ApplicationMain {
                 break;
             default:
                 System.out.println("Invalid choice. Please try again.");
-                choice = getPlayerChoice(scanner);
+                choice = getPlayerChoice(in); // for loop
         }
         return choice;
     }

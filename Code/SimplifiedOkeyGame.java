@@ -81,9 +81,9 @@ public class SimplifiedOkeyGame {
         return currentTile.toString();
     }
 
-    /*
+    /**
      * TODO: should randomly shuffle the tiles array before game starts @CxTurkO
-     * Fisher-Yates method for shuffle
+     * @Fisher-Yates method for shuffle
      */
     public void shuffleTiles() {
         // use a random number generator
