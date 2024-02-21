@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class ApplicationMain {
     public static final Tile NULL_TILE = new Tile(Integer.MAX_VALUE);
+    public static boolean firstTurn = true;
     public static void main(String[] args) throws CloneNotSupportedException{
         Scanner sc = new Scanner(System.in);
         SimplifiedOkeyGame game = new SimplifiedOkeyGame();
@@ -24,7 +25,6 @@ public class ApplicationMain {
         char devMode = sc.next().charAt(0);
         boolean devModeOn = devMode == 'Y';
 
-        boolean firstTurn = true;
         boolean gameContinues = true;
         int playerChoice = -1;
 
@@ -50,17 +50,19 @@ public class ApplicationMain {
                     System.out.println("1. Discard Tile");
                 }
 
-                System.out.print("Your choice: ");
-                playerChoice = sc.nextInt();
+                    System.out.print("Your choice: ");
+                    playerChoice = getTwoChoices(sc);
 
                 // after the first turn we can pick up
                 if (!firstTurn) {
+                    
                     if (playerChoice == 1) {
                         System.out.println("You picked up: " + game.getTopTile());
                         firstTurn = false;
                     } else if (playerChoice == 2) {
                         System.out.println("You picked up: " + game.getLastDiscardedTile());
                     }
+                    
 
                     // display the hand after picking up new tile
                     game.displayCurrentPlayersTiles();
@@ -209,4 +211,38 @@ public class ApplicationMain {
         }
         return choice;
     }
+
+    public static int getTwoChoices(Scanner in) {
+        int choice = -1;
+        System.out.print("Enter your choice (From above): ");
+        while (!in.hasNextInt()) {
+            System.out.print("Please enter a valid integer: ");
+            in.next();
+        }
+        if(firstTurn = true) {
+            switch (in.nextInt()) {
+                case 1:
+                    choice = 1;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    choice = getTwoChoices(in); // for loop
+            }
+        }
+        else {
+            switch (in.nextInt()) {
+                case 1:
+                    choice = 1;
+                    break;
+                case 2 :
+                    choice = 2;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    choice = getTwoChoices(in); // for loop
+            }
+        }
+        return choice;
+    }
+
 }
