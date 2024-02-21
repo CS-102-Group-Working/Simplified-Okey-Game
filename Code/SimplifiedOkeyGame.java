@@ -49,7 +49,7 @@ public class SimplifiedOkeyGame {
             }
         }
 
-        for(int i = 1; i < 4; i++){
+        for (int i = 1; i < 4; i++) {
             players[i].getTiles()[14] = ApplicationMain.NULL_TILE;
         }
     }
@@ -184,6 +184,7 @@ public class SimplifiedOkeyGame {
      * you may choose based on how useful each tile is
      */
     public void discardTileForComputer() {
+        
         boolean isDone = false;
 
         for (int i = 0; i < 15 && !isDone; i++) {
@@ -195,38 +196,49 @@ public class SimplifiedOkeyGame {
                 }
             }
         }
-
         if (!isDone) {
-            int[] values = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
-                    26 };
-            boolean[] contains = new boolean[26];
-            Arrays.fill(contains, false);
+            int intervalCount = 13;
+            int intervalLength = 14;
+            int[] counter = new int[intervalCount];
 
-            for (int i = 0; i < values.length - 13; i++) {
-                for (int j = i; j < i + 14; j++) {
-                    if (players[currentPlayerIndex].findPositionOfTile(values[j]) != -1) {
-                        contains[j] = true;
+            for (Tile tile : players[currentPlayerIndex].getTiles()) {
+                for (int i = 0; i < intervalCount; i++) {
+                    if (tile.getValue() >= i + 1 && tile.getValue() < i + 1 + intervalLength) {
+                        counter[i]++;
                     }
                 }
             }
+            int mostFilled = maxIndex(counter);
+            int leastFilled = minIndex(counter);
 
-            int counter = 0;
-            int index = 0;
-            for (int i = 0; i < contains.length - 13; i++) {
-                int currentCounter = 0;
-                for (int j = i; j < i + 14; j++) {
-                    if (!contains[j]) {
-                        currentCounter++;
-                    }
-                }
-                if (currentCounter > counter) {
-                    counter = currentCounter;
-                    index = i;
-                }
+            if (mostFilled > leastFilled) {
+                discardTile(leastFilled);
+            } else {
+                discardTile(leastFilled + 13);
             }
-
-            discardTile(index);
         }
+    }
+
+    private static int maxIndex(int[] arr) {
+        int max = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    private static int minIndex(int[] arr) {
+        int min = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
 
     }
 
