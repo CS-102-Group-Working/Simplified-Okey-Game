@@ -41,10 +41,10 @@ public class Tile {
      * otherwise, it should return false (they cannot form a chain)
      */
     public boolean canFormChainWith(Tile t) {
-        // Calculate the difference in values between this tile and the given tile
+        // Calculate the difference between this tile and the given tile
         int valueDifference = Math.abs(this.value - t.getValue());
         
-        // If the difference is 1, it means the tiles are consecutive and can form a chain
+        // If the difference is 1, it means that the tiles are consecutive and can form a chain
         // Return true if they can form a chain, otherwise return false
         return valueDifference == 1;
     }
