@@ -107,7 +107,7 @@ public class SimplifiedOkeyGame {
      */
     public boolean didGameFinish() {
         for (Player p : players) {
-            if (p.checkWinning() == true) {
+            if (p.checkWinning()) {
                 return true;
             }
         }
@@ -175,7 +175,6 @@ public class SimplifiedOkeyGame {
         } else {
             pickedTile = getTopTile();
         }
-
         System.out.println(currentPlayer.getName() + " picked " + pickedTile);
     }
 

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ApplicationMain {
-    public static final Tile NULL_TILE = new Tile(31);
+    public static final Tile NULL_TILE = new Tile(Integer.MAX_VALUE);
     public static void main(String[] args) throws CloneNotSupportedException{
         Scanner sc = new Scanner(System.in);
         SimplifiedOkeyGame game = new SimplifiedOkeyGame();

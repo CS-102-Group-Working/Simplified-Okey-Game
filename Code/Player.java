@@ -36,9 +36,9 @@ public class Player implements Cloneable {
         int currentChain = 1;
 
         for(int i = 0; i < length - 1; i++) {
-            if(this.playerTiles[i].getValue() == this.playerTiles[i + 1].getValue() - 1) {
+            if(this.playerTiles[i].canFormChainWith(this.playerTiles[i + 1])) {
                 currentChain++;
-            } else if(!(this.playerTiles[i].getValue() == this.playerTiles[i + 1].getValue())) {
+            } else if(this.playerTiles[i].getValue() != this.playerTiles[i + 1].getValue()) {
                 currentChain = 1;
             }
             if(currentChain > longestChain) {
@@ -53,11 +53,12 @@ public class Player implements Cloneable {
      */
     public Tile getAndRemoveTile(int index) {
         Tile toBeRemoved = getTiles()[index];
-        playerTiles[index] = null;
 
         for (int i = index; i < numberOfTiles; i++) {
             playerTiles[i] = playerTiles[i + 1];
         }
+
+        playerTiles[14] = ApplicationMain.NULL_TILE;
 
         return toBeRemoved;
     }
@@ -117,8 +118,14 @@ public class Player implements Cloneable {
     public void displayTiles() {
         System.out.println(playerName + "'s Tiles:");
         for (int i = 0; i < 15; i++) {
-            if(playerTiles[i].getValue() != 31){
-                System.out.print(playerTiles[i].toString() + " ");
+            if(playerTiles[i].getValue() != Integer.MAX_VALUE){
+                System.out.printf("%-3s", i + ".");
+            }
+        }
+        System.out.print("\n|");
+        for (int i = 0; i < 15; i++) {
+            if(playerTiles[i].getValue() != Integer.MAX_VALUE){
+                System.out.printf("%-2s|", playerTiles[i].toString());
             }
         }
         System.out.println();
