@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class ApplicationMain {
     public static final Tile NULL_TILE = new Tile(Integer.MAX_VALUE);
     public static boolean firstTurn = true;
-    public static void main(String[] args) throws CloneNotSupportedException{
+
+    public static void main(String[] args) throws CloneNotSupportedException {
         Scanner sc = new Scanner(System.in);
         SimplifiedOkeyGame game = new SimplifiedOkeyGame();
 
@@ -50,19 +51,18 @@ public class ApplicationMain {
                     System.out.println("1. Discard Tile");
                 }
 
-                    System.out.print("Your choice: ");
-                    playerChoice = getTwoChoices(sc);
+                System.out.print("Your choice: ");
+                playerChoice = getTwoChoices(sc);
 
                 // after the first turn we can pick up
                 if (!firstTurn) {
-                    
+
                     if (playerChoice == 1) {
                         System.out.println("You picked up: " + game.getTopTile());
                         firstTurn = false;
                     } else if (playerChoice == 2) {
                         System.out.println("You picked up: " + game.getLastDiscardedTile());
                     }
-                    
 
                     // display the hand after picking up new tile
                     game.displayCurrentPlayersTiles();
@@ -146,69 +146,33 @@ public class ApplicationMain {
         sc.close();
     }
 
-
     /**
-     * A method that prompts the user to make a choice between 0 and 14 and returns the choice
+     * A method that prompts the user to make a choice between 0 and 14 and returns
+     * the choice
+     * 
      * @param The Scanner object to read user input
      * @return The user's choice that an integer between 0 and 14
      */
-    public static int getPlayerChoice(Scanner in) {
+    public static int getPlayerChoice(Scanner scanner) {
         int choice = -1;
-        System.out.print("Enter your choice (0 to 14): ");
-        while (!in.hasNextInt()) {
-            System.out.print("Please enter a valid integer: ");
-            in.next();
+        boolean isValidChoice = false;
+
+        while (!isValidChoice) {
+            System.out.print("Enter your choice (0 to 14): ");
+            if (scanner.hasNextInt()) {
+                int input = scanner.nextInt();
+                if (input >= 0 && input <= 14) {
+                    choice = input;
+                    isValidChoice = true;
+                } else {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            } else {
+                System.out.println("Please enter a valid integer.");
+                scanner.next(); // Clear the invalid input
+            }
         }
-        switch (in.nextInt()) {
-            case 0:
-                choice = 0;
-                break;
-            case 1:
-                choice = 1;
-                break;
-            case 2:
-                choice = 2;
-                break;
-            case 3:
-                choice = 3;
-                break;
-            case 4:
-                choice = 4;
-                break;
-            case 5:
-                choice = 5;
-                break;
-            case 6:
-                choice = 6;
-                break;
-            case 7:
-                choice = 7;
-                break;
-            case 8:
-                choice = 8;
-                break;
-            case 9:
-                choice = 9;
-                break;
-            case 10:
-                choice = 10;
-                break;
-            case 11:
-                choice = 11;
-                break;
-            case 12:
-                choice = 12;
-                break;
-            case 13:
-                choice = 13;
-                break;
-            case 14:
-                choice = 14;
-                break;
-            default:
-                System.out.println("Invalid choice. Please try again.");
-                choice = getPlayerChoice(in); // for loop
-        }
+
         return choice;
     }
 
@@ -219,7 +183,7 @@ public class ApplicationMain {
             System.out.print("Please enter a valid integer: ");
             in.next();
         }
-        if(firstTurn = true) {
+        if (firstTurn) {
             switch (in.nextInt()) {
                 case 1:
                     choice = 1;
@@ -228,13 +192,12 @@ public class ApplicationMain {
                     System.out.println("Invalid choice. Please try again.");
                     choice = getTwoChoices(in); // for loop
             }
-        }
-        else {
+        } else {
             switch (in.nextInt()) {
                 case 1:
                     choice = 1;
                     break;
-                case 2 :
+                case 2:
                     choice = 2;
                     break;
                 default:
