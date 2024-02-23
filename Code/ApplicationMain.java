@@ -159,7 +159,7 @@ public class ApplicationMain {
 
         while (!isValidChoice) {
             System.out.print("Enter your choice (0 to 14): ");
-            if (scanner.hasNextInt()) {
+            if (scanner.hasNextInt()) { // check the input whether integer or not
                 int input = scanner.nextInt();
                 if (input >= 0 && input <= 14) {
                     choice = input;
@@ -169,7 +169,7 @@ public class ApplicationMain {
                 }
             } else {
                 System.out.println("Please enter a valid integer.");
-                scanner.next(); // Clear the invalid input
+                scanner.next(); 
             }
         }
 

@@ -86,14 +86,12 @@ public class SimplifiedOkeyGame {
      * @Fisher-Yates method for shuffle
      */
     public void shuffleTiles() {
-        // use a random number generator
+        
         Random random = new Random();
 
         // loop through the tiles array
         for (int i = 0; i < tileCount; i++) {
-            // pick a random index between i and tileCount - 1
             int j = i + random.nextInt(tileCount - i);
-            // swap the tiles at i and j
             Tile temp = tiles[i];
             tiles[i] = tiles[j];
             tiles[j] = temp;
@@ -128,6 +126,7 @@ public class SimplifiedOkeyGame {
             if (biggest < players[i].findLongestChain()) {
                 Arrays.fill(winner, false);
                 winner[i] = true;
+                biggest = players[i].findLongestChain();
                 count = 1;
             } else if (biggest == players[i].findLongestChain()) {
                 winner[i] = true;
