@@ -36,10 +36,11 @@ public class Player implements Cloneable {
         int currentChain = 1;
 
         for(int i = 0; i < length - 1; i++) {
+            // Two consecutive duplicate tiles doesn't interrupt the chain
             if(this.playerTiles[i].canFormChainWith(this.playerTiles[i + 1])) {
                 currentChain++;
-            } else if(this.playerTiles[i].getValue() != this.playerTiles[i + 1].getValue()) {
-                currentChain = 1;
+            } else if(this.playerTiles[i].getValue() != this.playerTiles[i + 1].getValue()) { // if the chain is interrupted.
+                currentChain = 1; // resetting the chain
             }
             if(currentChain > longestChain) {
                 longestChain = currentChain;

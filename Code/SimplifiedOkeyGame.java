@@ -185,21 +185,21 @@ public class SimplifiedOkeyGame {
     public void discardTileForComputer() {
         
         boolean isDone = false;
-
+        // Computer first plays the duplicate tiles if it has one 
         for (int i = 0; i < 15 && !isDone; i++) {
             for (int j = i + 1; j < 15 && !isDone; j++) {
                 if (players[currentPlayerIndex].getTiles()[i]
                         .compareTo(players[currentPlayerIndex].getTiles()[j]) == 0) {
-                    discardTile(i);
+                    discardTile(i); // playing the duplicate
                     isDone = true;
                 }
             }
         }
-        if (!isDone) {
+        if (!isDone) { //If the player doesn't have any duplicates
             int intervalCount = 13;
             int intervalLength = 14;
-            int[] counter = new int[intervalCount];
-
+            int[] counter = new int[intervalCount]; // To count how much full each possible winning hand
+                                                    // ex. (1,2...14) is one winning hand
             for (Tile tile : players[currentPlayerIndex].getTiles()) {
                 for (int i = 0; i < intervalCount; i++) {
                     if (tile.getValue() >= i + 1 && tile.getValue() < i + 1 + intervalLength) {
@@ -207,17 +207,17 @@ public class SimplifiedOkeyGame {
                     }
                 }
             }
-            int mostFilled = maxIndex(counter);
-            int leastFilled = minIndex(counter);
+            int mostFilled = maxIndex(counter); // first index of the hand that is most likely to win
+            int leastFilled = minIndex(counter); // first index of the hand that is least likely to win
 
             if (mostFilled > leastFilled) {
-                discardTile(leastFilled);
+                discardTile(leastFilled); // if the most filled hand is at a greater index discard the first tile of least filled hand.
             } else {
-                discardTile(leastFilled + 13);
+                discardTile(leastFilled + 13); // else discard the last tile of the least filled hand.
             }
         }
     }
-
+    // Finds the index of the biggest number in an integer array
     private static int maxIndex(int[] arr) {
         int max = arr[0];
 
@@ -228,7 +228,7 @@ public class SimplifiedOkeyGame {
         }
         return max;
     }
-
+    // Finds the index of the smallest number in an integer array
     private static int minIndex(int[] arr) {
         int min = arr[0];
 

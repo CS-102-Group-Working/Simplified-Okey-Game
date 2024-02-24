@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class ApplicationMain {
-    public static final Tile NULL_TILE = new Tile(Integer.MAX_VALUE);
+    public static final Tile NULL_TILE = new Tile(Integer.MAX_VALUE); // Using null tile as a different tile to avoid exceptions.
     public static boolean firstTurn = true;
 
     public static void main(String[] args) throws CloneNotSupportedException {
