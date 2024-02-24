@@ -94,9 +94,9 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
                         Player[] winners = game.getPlayerWithHighestLongestChain();
-                        if (winners.length == 1) {
+                        if (winners.length == 1) { // If winner is only one player
                             System.out.println("Winner: " + winners[0].getName());
-                        } else {
+                        } else { // Multiple winners
                             String output = "Winners: ";
                             for (Player player : winners) {
                                 output += player.getName() + ", ";
@@ -129,9 +129,9 @@ public class ApplicationMain {
                         // determine the winner based on longest chain lengths of the players
                         // use getPlayerWithHighestLongestChain method of game for this task
                         Player[] winners = game.getPlayerWithHighestLongestChain();
-                        if (winners.length == 1) {
+                        if (winners.length == 1) { // If winner is only one player
                             System.out.println("Winner: " + winners[0].getName());
-                        } else {
+                        } else { // Multiple winners
                             String output = "Winners: ";
                             for (Player player : winners) {
                                 output += player.getName() + ", ";

@@ -74,6 +74,7 @@ public class Player implements Cloneable {
     public void addTile(Tile t) {
         boolean isPut = false;
 
+        // Shift all elements to right from left until find true position
         for (int i = playerTiles.length - 1; i > 0 && !isPut; i--) {
             if (playerTiles[i - 1].compareTo(t) > 0) {
                 playerTiles[i] = playerTiles[i - 1];

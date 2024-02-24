@@ -123,12 +123,12 @@ public class SimplifiedOkeyGame {
         int count = 0;
 
         for (int i = 0; i < players.length; i++) {
-            if (biggest < players[i].findLongestChain()) {
+            if (biggest < players[i].findLongestChain()) { // If current player is has more points than previous winner
                 Arrays.fill(winner, false);
                 winner[i] = true;
                 biggest = players[i].findLongestChain();
                 count = 1;
-            } else if (biggest == players[i].findLongestChain()) {
+            } else if (biggest == players[i].findLongestChain()) { // If current player is has equal points as previous winner
                 winner[i] = true;
                 count++;
             }
@@ -162,19 +162,19 @@ public class SimplifiedOkeyGame {
      */
     public void pickTileForComputer() throws CloneNotSupportedException {
         Player currentPlayer = players[currentPlayerIndex];
-        Player imaginePlayer = (Player) currentPlayer.clone();
-        Tile temp = new Tile(lastDiscardedTile.getValue());
+        Player imaginePlayer = (Player) currentPlayer.clone(); // Replica of the current player
+        Tile temp = new Tile(lastDiscardedTile.getValue()); // Replica of the last discarded tile
         String pickedTile = "";
 
         imaginePlayer.addTile(temp);
         int imagineChainLength = imaginePlayer.findLongestChain();
 
+        //Compareing which method is advantageous
         if (imagineChainLength > currentPlayer.findLongestChain()) {
             pickedTile = getLastDiscardedTile();
         } else {
             pickedTile = getTopTile();
         }
-        System.out.println(currentPlayer.getName() + " picked " + pickedTile);
     }
 
     /*
